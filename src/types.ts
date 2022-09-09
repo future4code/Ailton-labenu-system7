@@ -24,18 +24,19 @@ export type Class = {
 
 export type Student = {
 	id: string
-	nome: string
+	name: string
 	email: string
-	data_nasc: string | Date
-	turma_id: string
+	birth_date: string | Date
+	class_id: string
 }
 
 export const typingStudent = async (student: any) => {
 	const typeStudent: Student = {
 		id: student.id,
-		nome: student.nome,
+		name: student.name,
 		email: student.email,
-		data_nasc: moment(student.data_nasc, 'YYYY-MM-DD').format('DD/MM/YYYY'),
-		turma_id: student.turma_id,
+		birth_date: moment(student.birth_date, 'YYYY-MM-DD').format('DD/MM/YYYY'),
+		class_id: student.class_id,
 	}
+	return typeStudent
 }
