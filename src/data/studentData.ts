@@ -1,14 +1,14 @@
-import { Student } from '../types'
-import { connection } from './connection'
+import { Student } from "../types";
+import { connection } from "./connection";
 
 export const insertStudent = async (student: Student): Promise<void> => {
-	const { id, nome, email, data_nasc, turma_id } = student
+  const { id, name, email, birth_date, class_id } = student;
 
-	await connection('student').insert({
-		id,
-		nome,
-		email,
-		data_nasc,
-		turma_id,
-	})
-}
+  await connection("Students").insert({
+    id,
+    name,
+    email,
+    birth_date,
+    class_id,
+  });
+};
