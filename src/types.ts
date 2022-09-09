@@ -14,6 +14,7 @@ export type updatePersonClass = {
 }
 
 export type Class = {
+
 	id: string
 	name: string
 	module: number
