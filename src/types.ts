@@ -15,6 +15,6 @@ export type Class = {
     id: string,
     name: string,
     module: number,
-    students: any[],
-    teachers: any[]
+    students: any[], //MUDAR TIPAGEM
+    teachers: Teacher[]
 };
