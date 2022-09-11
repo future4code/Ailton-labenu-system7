@@ -8,7 +8,7 @@ app.get('/teacher', getTeachers)
 app.put('/teacher', updateTeacher)
 
 app.post('/class', postClass)
-app.get('/class', getClass) //terminar o join
+app.get('/class', getClass)
 app.put('/class/:id', putClass)
 
 app.post('/student', createStudent)
