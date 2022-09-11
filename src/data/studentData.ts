@@ -8,7 +8,7 @@ export const insertStudent = async (student: Student): Promise<void> => {
 		id,
 		name,
 		email,
-		birth_date,
+		birth_date: new Date(birth_date),
 		class_id,
 	})
 }
@@ -19,7 +19,7 @@ export const selectStudent = async (
 ): Promise<Student | undefined> => {
 	const [result] = await connection('Students')
 		.where({ name })
-		.orWhere({ id: studentId })
+		// .orWhere({ id: studentId })
 
 	if (result) {
 		const typeStudent = typingStudent(result)

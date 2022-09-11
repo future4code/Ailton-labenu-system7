@@ -1,4 +1,4 @@
-import { Teacher, Class, typingStudent } from "../types";
+import { Teacher, Class, typingStudent, Student } from "../types";
 import { connection } from "./connection";
 import { displayDate } from "./functions";
 
@@ -41,13 +41,13 @@ const selectTeachers = async(classId: string): Promise<Teacher[]> => {
     return teachers;
 };
 
-const selectStudents = async(classId: string): Promise<Teacher[]> => { //MUDAR TIPAGEM
+const selectStudents = async(classId: string): Promise<Student[]> => {
     const result = await connection('Class as C')
         .select('S.id', 'S.name', 'S.email', 'S.birth_date')
         .rightJoin('Students as S', { 'C.id': 'S.class_id' })
         .where({'C.id': classId});
 
-    const students: Teacher[] = result.map((item) => { //MUDAR TIPAGEM
+    const students: Student[] = result.map((item) => {
         return item && {
             id: item.id,
             name: item.name,

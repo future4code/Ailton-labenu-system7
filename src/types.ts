@@ -14,12 +14,11 @@ export type updatePersonClass = {
 }
 
 export type Class = {
-
 	id: string
 	name: string
 	module: number
-	students: any[]
-	teachers: any[]
+	students: Student[]
+	teachers: Teacher[]
 }
 
 export type Student = {

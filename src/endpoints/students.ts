@@ -34,7 +34,7 @@ export const createStudent = async (
 			birth_date,
 			class_id,
 		}
-		console.log(newStudent)
+		// console.log(newStudent)
 
 		await insertStudent(newStudent)
 
@@ -60,6 +60,8 @@ export const getStudantByName = async (
 			res.statusCode = 404
 			throw new Error(`Estudante com esse ${name} não foi encontrado`)
 		}
+
+		res.status(200).send({ students: nameStudent })
 	} catch (error: any) {
 		res.status(res.statusCode || 500).send({ message: error.message })
 	}
