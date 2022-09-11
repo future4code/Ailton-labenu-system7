@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { changeClassModule, createClass, selectClasses } from "../data/class";
+import { changeClassModule, createClass, selectClasses, selectNewClasses } from "../data/class";
 import { Class } from "../types";
 
 export const postClass = async(req: Request, res: Response): Promise<void> => {
@@ -21,6 +21,16 @@ export const postClass = async(req: Request, res: Response): Promise<void> => {
 export const getClass = async(req: Request, res: Response): Promise<void> => {
     try {
         const classes: Class[] = await selectClasses();
+
+        res.status(200).send({ classes: classes }); 
+    } catch (error: any) {
+        res.status(res.statusCode || 500).send({ message: error.message || error.sqlMessage });
+    }
+}
+
+export const getNewClass = async(req: Request, res: Response): Promise<void> => {
+    try {
+        const classes: Class[] = await selectNewClasses();
 
         res.status(200).send({ classes: classes }); 
     } catch (error: any) {
