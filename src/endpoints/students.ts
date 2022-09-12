@@ -5,7 +5,7 @@ import {
 	allClassesexport,
 	changeClassModule,
 } from '../data/class'
-import { insertStudent, selectStudent } from '../data/studentData'
+import { insertStudent, selectStudent, selectStudentById, updateStudentClass } from '../data/studentData'
 
 //-----------------------CRIAR ESTUDANTE----------------------------
 export const createStudent = async (
@@ -34,7 +34,6 @@ export const createStudent = async (
 			birth_date,
 			class_id,
 		}
-		// console.log(newStudent)
 
 		await insertStudent(newStudent)
 
@@ -53,6 +52,11 @@ export const getStudantByName = async (
 ): Promise<void> => {
 	try {
 		const name = req.params.name
+
+		if (!name || name === ":name") {
+			res.statusCode = 404
+			throw new Error(`Nenhum nome foi informado!`)
+		}
 
 		const nameStudent = await selectStudent(name)
 
@@ -76,21 +80,22 @@ export const changeStudentClass = async (
 	res: Response
 ): Promise<void> => {
 	try {
-		const { studentd, classId } = req.body
-
-		if (!studentd || !classId) {
+		const { studentId, classId } = req.body
+		
+		if (!studentId || !classId) {
 			res.statusCode = 404
 			throw new Error('Id e modulo da turma deve ser passado')
 		}
-
-		const studentTrue = await selectStudent('', studentd)
-
+		
+		const studentTrue = await selectStudentById(studentId)
+		
 		if (!studentTrue) {
 			res.statusCode = 404
-			throw new Error(`Estudante com o id ${studentd} não existe.`)
+			throw new Error(`Estudante com o id ${studentId} não existe.`)
 		}
 
-		await changeClassModule(studentd, classId)
+		await updateStudentClass(studentId, classId)
+		res.status(200).send({message: "Troca de turma do aluno feita com sucesso!"})
 	} catch (error: any) {
 		res.status(res.statusCode || 500).send({ message: error.message })
 	}
