@@ -5,7 +5,7 @@ import {
   updateTeacher,
 } from "./endpoints/teachers";
 import { getClass, getNewClass, postClass, putClass } from "./endpoints/class";
-import { createStudent, getStudantByName } from "./endpoints/students";
+import { changeStudentClass, createStudent, getStudantByName } from "./endpoints/students";
 
 app.post("/teacher", createTeacher);
 app.get("/teacher", getTeachers);
@@ -18,3 +18,4 @@ app.put("/class/:id", putClass);
 
 app.post("/student", createStudent);
 app.get("/student/:name", getStudantByName);
+app.put("/student", changeStudentClass);
