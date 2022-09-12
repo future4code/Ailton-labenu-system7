@@ -31,3 +31,9 @@ As funcionalidades básicas são:
 → Adicionar docente na turma;
 
 → Pegar a idade de algum estudante a partir do id
+
+## Link para Documentação no Postman
+### https://documenter.getpostman.com/view/21551959/2s7YYoBmsd
+
+## Base URL da API
+### https://ailton-labenu-system-7.herokuapp.com/
